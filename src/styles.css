@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-*{ 
+* {
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -7,37 +7,53 @@
     color: #444;
     border-radius: 5px;
 }
-a{
+
+a {
     text-decoration: none;
     color: #444;
     transition: 0.2s;
 }
-a:hover{
+
+a:hover {
     color: #dec129;
 
 }
 
 /* FORM */
-form{
+form {
     width: 500px;
     margin: 0 auto;
+
 }
-.form-group{
+
+.form-group {
     display: flex;
     flex-direction: column;
     margin-bottom: 1em;
 }
-.form-group label{
+
+.form-group label {
     font-weight: bold;
     font-size: 0.9em;
     margin-bottom: 0.4em;
 }
-.form-group input, .form-group textarea{
+
+.form-group input,
+.form-group textarea {
     padding: 0.6em;
     color: #777;
     font-size: 0.8em;
 }
-input[type="submit"]{
+
+.validation-error p {
+    color: #dc3545;
+    margin-top: .4em;
+    border-left: 3px solid red;
+    padding-left: .2em;
+    border-radius: 0;
+}
+
+input[type="submit"] {
     background-color: #cacaca;
     border: 2px solid transparent;
     padding: 0.6em 1em;
@@ -47,7 +63,7 @@ input[type="submit"]{
     transition: 0.2s;
 }
 
-input[type="submit"]:hover{
+input[type="submit"]:hover {
     color: #dec129;
     border-color: #dec129;
     background-color: transparent;
