@@ -1,18 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { FormComponent } from '../../form/form.component';
 import { CommonModule } from '@angular/common';
-import { EventEmitter } from 'stream';
+import { Moment } from '../../../Moments';
 @Component({
   selector: 'app-new',
   standalone: true,
   imports: [FormComponent, CommonModule],
   templateUrl: './new.component.html',
-  styleUrl: './new.component.css'
+  styleUrl: './new.component.css',
 })
 export class NewComponent {
-  btnText = "Compartilhar";
+  btnText = 'Compartilhar';
 
-  createHandler() {
-    
+  async createHandler(moment: Moment | Object) {
+    const formData = new FormData();
+    formData.append('title', moment.title);
+    formData.append('description', moment.description);
+
+    if (moment.image) {
+      formData.append('image', moment.image);
+    }
   }
 }

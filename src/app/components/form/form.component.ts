@@ -1,14 +1,12 @@
-import { CommonModule, } from '@angular/common';
-import { Component, Input, Output, importProvidersFrom } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { EventEmitter } from 'stream';
-import { Moment } from '../../Moments';
-
+import { Moment, ToForm } from '../../Moments';
 
 @Component({
   selector: 'app-form',
@@ -18,14 +16,14 @@ import { Moment } from '../../Moments';
   styleUrl: './form.component.css',
 })
 export class FormComponent {
-  @Output() onSubmit = new EventEmitter<Moment>()
+  @Output() onSubmit = new EventEmitter<Object>();
   @Input() btnText!: string;
 
-  momentForm = new FormGroup({
-    id: new FormControl(''),
+  momentForm = new FormGroup<ToForm<Moment>>({
+    id: new FormControl(null),
     title: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
-    image: new FormControl<string | File>(''),
+    image: new FormControl<File | string>(''),
   });
 
   submit() {
@@ -33,6 +31,7 @@ export class FormComponent {
       return;
     }
     console.log(this.momentForm.value);
+    this.onSubmit.emit(this.momentForm.value);
   }
 
   get title() {
