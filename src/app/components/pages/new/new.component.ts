@@ -2,6 +2,8 @@ import { Component, EventEmitter } from '@angular/core';
 import { FormComponent } from '../../form/form.component';
 import { CommonModule } from '@angular/common';
 import { Moment } from '../../../Moments';
+import { MomentService } from '../../../services/moment.service';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-new',
   standalone: true,
@@ -11,8 +13,8 @@ import { Moment } from '../../../Moments';
 })
 export class NewComponent {
   btnText = 'Compartilhar';
-
-  async createHandler(moment: Moment | Object) {
+  constructor(private momentService: MomentService) {}
+  async createHandler(moment: Moment | any) {
     const formData = new FormData();
     formData.append('title', moment.title);
     formData.append('description', moment.description);
@@ -20,5 +22,7 @@ export class NewComponent {
     if (moment.image) {
       formData.append('image', moment.image);
     }
+
+    await this.momentService.createMoment(formData).subscribe();
   }
 }
