@@ -4,6 +4,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { MessagesComponent } from './components/messages/messages.component';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ import { HeaderComponent } from './components/header/header.component';
     RouterOutlet,
     FooterComponent,
     HeaderComponent,
+    MessagesComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
