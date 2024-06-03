@@ -7,7 +7,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { Moment, ToForm } from '../../Moments';
-import { MomentComponent } from '../pages/moment/moment.component';
 
 @Component({
   selector: 'app-form',

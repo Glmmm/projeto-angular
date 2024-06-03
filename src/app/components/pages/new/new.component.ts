@@ -1,9 +1,9 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormComponent } from '../../form/form.component';
 import { CommonModule } from '@angular/common';
 import { Moment } from '../../../Moments';
 import { MomentService } from '../../../services/moment.service';
-import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-new',
   standalone: true,
