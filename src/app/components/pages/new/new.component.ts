@@ -14,6 +14,7 @@ import { MomentService } from '../../../services/moment.service';
 export class NewComponent {
   btnText = 'Compartilhar';
   constructor(private momentService: MomentService) {}
+  
   async createHandler(moment: Moment | any) {
     const formData = new FormData();
     formData.append('title', moment.title);
