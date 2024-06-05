@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Moment, ToForm } from '../../Moments';
+import { Moment } from '../../Moments';
 
 @Component({
   selector: 'app-form',
@@ -16,24 +16,22 @@ import { Moment, ToForm } from '../../Moments';
   styleUrl: './form.component.css',
 })
 export class FormComponent {
-  @Output() onSubmit = new EventEmitter<Object>();
+  @Output() onSubmit = new EventEmitter<Moment>();
   @Input() btnText!: string;
 
-  momentForm = new FormGroup<ToForm<Moment>>({
-    id: new FormControl(null),
-    title: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
-    image: new FormControl<File | string>(''),
-  });
+  image?: File;
 
-  submit() {
-    if (this.momentForm.invalid) {
-      return;
-    }
-    console.log(this.momentForm.value);
-    this.onSubmit.emit(this.momentForm.value);
+  momentForm!: FormGroup;
+
+  constructor() {
+    this.momentForm = new FormGroup({
+      id: new FormControl(''),
+      title: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required]),
+      image: new FormControl(''),
+    });
   }
-
+  
   get title() {
     return this.momentForm.get('title')!;
   }
@@ -42,6 +40,13 @@ export class FormComponent {
   }
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
-    this.momentForm.patchValue({ image: file });
+    this.momentForm.patchValue({ image: event.target.files[0] });
+  }
+  submit() {
+    if (this.momentForm.invalid) {
+      return;
+    }
+    console.log(this.momentForm.value);
+    this.onSubmit.emit(this.momentForm.value);
   }
 }

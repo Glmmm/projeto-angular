@@ -1,15 +1,9 @@
-import { FormControl } from '@angular/forms';
-
 export interface Moment {
-  id?: number | null;
-  title: string | null;
-  description: string | null;
-  image: string | File | null;
-  created_at?: string | null;
-  updated_at?: string | null;
+  id?: number;
+  title: string;
+  description: string;
+  image: string;
+  created_at?: string;
+  updated_at?: string;
   comments?: [{ text: string; username: string }] | null;
 }
-
-export type ToForm<T> = {
-  [key in keyof T]: FormControl<T[key]>;
-};
