@@ -22,7 +22,7 @@ export class HomeComponent {
   searchTerm: string = '';
 
   constructor(private momentService: MomentService) {
-    this.momentService.getMoment().subscribe((items) => {
+    this.momentService.getMoments().subscribe((items) => {
       const data = items.data;
 
       data.map((item) => {
@@ -34,12 +34,13 @@ export class HomeComponent {
       this.moments = data;
     });
   }
-  search(event: Event): void {
-    const target = event.target as HTMLInputElement;
+
+  search(e: Event): void {
+    const target = e.target as HTMLInputElement;
     const value = target.value;
 
-    this.moments = this.allMoments.filter((moment) => {
-      return moment.title.toLowerCase().includes(value);
-    });
+    this.moments = this.allMoments.filter((moment) =>
+      moment.title.toLowerCase().includes(value)
+    );
   }
 }

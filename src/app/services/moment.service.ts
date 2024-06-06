@@ -12,12 +12,16 @@ export class MomentService {
   private baseApiUrl = environment_production.baseApiUrl;
   private apiUrl = `${this.baseApiUrl}api/moments`;
 
-  constructor(private http: HttpClient) { }
-  
+  constructor(private http: HttpClient) {}
+
   createMoment(formData: FormData): Observable<FormData> {
     return this.http.post<FormData>(this.apiUrl, formData);
   }
-  getMoment(): Observable<Response<Moment[]>> {
+  getMoments(): Observable<Response<Moment[]>> {
     return this.http.get<Response<Moment[]>>(this.apiUrl);
+  }
+  getMoment(id: number): Observable<Response<Moment>> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Response<Moment>>(url);
   }
 }
