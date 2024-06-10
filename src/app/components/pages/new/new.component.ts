@@ -21,8 +21,8 @@ export class NewComponent {
     private momentService: MomentService,
     private messageService: MessagesService,
     private router: Router
-  ) { }
-  
+  ) {}
+
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
 

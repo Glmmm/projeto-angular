@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, Output, EventEmitter, input } from '@angular/core';
+import { Component, Input, Output, EventEmitter, input, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -15,21 +15,34 @@ import { Moment } from '../../Moments';
   templateUrl: './form.component.html',
   styleUrl: './form.component.css',
 })
-export class FormComponent {
+export class FormComponent implements OnInit{
   @Output() onSubmit = new EventEmitter<Moment>();
-  @Input() btnText!: string;
   @Input() momentData: Moment | null = null;
+  @Input() btnText!: string;
+
   image?: File;
 
   momentForm!: FormGroup;
 
-  constructor() {
-    this.momentForm = new FormGroup({
-      id: new FormControl(''),
-      title: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.required]),
-      image: new FormControl(''),
-    });
+  ngOnInit(): void {
+    if (this.momentData) {
+      console.log(this.momentData);
+      this.momentForm = new FormGroup({
+        id: new FormControl(this.momentData.id),
+        title: new FormControl(this.momentData.title, [Validators.required]),
+        description: new FormControl(this.momentData.description, [
+          Validators.required,
+        ]),
+        image: new FormControl(''),
+      });
+    } else {
+      this.momentForm = new FormGroup({
+        id: new FormControl(''),
+        title: new FormControl('', [Validators.required]),
+        description: new FormControl('', [Validators.required]),
+        image: new FormControl(''),
+      });
+    }
   }
 
   get title() {
