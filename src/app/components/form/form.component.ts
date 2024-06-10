@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, input } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -18,7 +18,7 @@ import { Moment } from '../../Moments';
 export class FormComponent {
   @Output() onSubmit = new EventEmitter<Moment>();
   @Input() btnText!: string;
-
+  @Input() momentData: Moment | null = null;
   image?: File;
 
   momentForm!: FormGroup;
@@ -31,7 +31,7 @@ export class FormComponent {
       image: new FormControl(''),
     });
   }
-  
+
   get title() {
     return this.momentForm.get('title')!;
   }

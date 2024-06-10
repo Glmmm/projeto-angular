@@ -27,6 +27,7 @@
 .moment img {
     width: 100%;
     margin-bottom: 1em;
+    border: 1px solid #000;
 }
 
 .moment h3,
@@ -40,29 +41,33 @@
 }
 
 a {
+    border: 1px solid #dec129;
     color: #dec129;
     padding: 0.3em 0.6em;
 }
 
 a:hover {
-    color: #A48D1D;
-    background-color: #B5B5B5;
+    color: #fff;
+    background-color: #dec129;
 }
 
-.search-container{
+.search-container {
     margin-bottom: 2em;
     width: 100%;
 }
-.search-container form{
+
+.search-container form {
     width: 30%;
     position: relative;
 }
-.search-container fa-icon{
+
+.search-container fa-icon {
     position: absolute;
     top: 8px;
     left: 8px;
 }
-.search-container input{
+
+.search-container input {
     padding: 0.5em;
     width: 100%;
     text-align: center;
