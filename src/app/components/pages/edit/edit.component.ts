@@ -26,12 +26,9 @@ export class EditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('oouiasfhuihsafyagos7d8vysdagoyasgfsafui');
-
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.momentService.getMoment(id).subscribe((item) => {
       this.moment = item.data;
-      console.log(item);
     });
   }
 
